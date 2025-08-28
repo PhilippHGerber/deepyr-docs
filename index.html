@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="flex flex-col items-center py-16 px-4">
+            <h1 class="text-5xl font-bold text-center">Deepyr UI Components</h1>
+            <p class="text-lg text-center max-w-3xl mt-4 text-base-content/70">
+              A type-safe and fluent Dart implementation of DaisyUI components for Jaspr, providing a beautiful API for building web apps with Tailwind CSS.
+            </p>
+            <div class="mt-10">
+              <a href="/components/button">
+                <button class="btn btn-primary btn-lg" type="button">Get Started<span class="material-symbols-rounded">arrow_forward</span></button>
+              </a>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>

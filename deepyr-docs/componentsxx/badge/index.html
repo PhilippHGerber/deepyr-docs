@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="max-w-5xl mx-auto px-4">
+            <div id="badge" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-460527418"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><span class="badge">Badge</span></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-460527418"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Badge')])
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-sizes" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-sizes">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge sizes</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-1005433489"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-xs">Xsmall</span>
+                    <span class="badge badge-sm">Small</span>
+                    <span class="badge badge-md">Medium</span>
+                    <span class="badge badge-lg">Large</span>
+                    <span class="badge badge-xl">Xlarge</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-1005433489"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Xsmall')], style: [Badge.xs]),
+Badge([text('Small')], style: [Badge.sm]),
+Badge([text('Medium')], style: [Badge.md]), // Default
+Badge([text('Large')], style: [Badge.lg]),
+Badge([text('Xlarge')], style: [Badge.xl]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-with-colors" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-with-colors">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge with colors</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-738955489"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-primary">Primary</span>
+                    <span class="badge badge-secondary">Secondary</span>
+                    <span class="badge badge-accent">Accent</span>
+                    <span class="badge badge-neutral">Neutral</span>
+                    <span class="badge badge-info">Info</span>
+                    <span class="badge badge-success">Success</span>
+                    <span class="badge badge-warning">Warning</span>
+                    <span class="badge badge-error">Error</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-738955489"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Primary')], style: [Badge.primary]),
+Badge([text('Secondary')], style: [Badge.secondary]),
+Badge([text('Accent')], style: [Badge.accent]),
+Badge([text('Neutral')], style: [Badge.neutral]),
+Badge([text('Info')], style: [Badge.info]),
+Badge([text('Success')], style: [Badge.success]),
+Badge([text('Warning')], style: [Badge.warning]),
+Badge([text('Error')], style: [Badge.error]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-with-soft-style" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-with-soft-style">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge with soft style</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-905289962"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-soft badge-primary">Primary</span>
+                    <span class="badge badge-soft badge-secondary">Secondary</span>
+                    <span class="badge badge-soft badge-accent">Accent</span>
+                    <span class="badge badge-soft badge-info">Info</span>
+                    <span class="badge badge-soft badge-success">Success</span>
+                    <span class="badge badge-soft badge-warning">Warning</span>
+                    <span class="badge badge-soft badge-error">Error</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-905289962"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Primary')], style: [Badge.soft, Badge.primary]),
+Badge([text('Secondary')], style: [Badge.soft, Badge.secondary]),
+Badge([text('Accent')], style: [Badge.soft, Badge.accent]),
+Badge([text('Info')], style: [Badge.soft, Badge.info]),
+Badge([text('Success')], style: [Badge.soft, Badge.success]),
+Badge([text('Warning')], style: [Badge.soft, Badge.warning]),
+Badge([text('Error')], style: [Badge.soft, Badge.error]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-with-outline-style" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-with-outline-style">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge with outline style</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-797966342"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-outline badge-primary">Primary</span>
+                    <span class="badge badge-outline badge-secondary">Secondary</span>
+                    <span class="badge badge-outline badge-accent">Accent</span>
+                    <span class="badge badge-outline badge-info">Info</span>
+                    <span class="badge badge-outline badge-success">Success</span>
+                    <span class="badge badge-outline badge-warning">Warning</span>
+                    <span class="badge badge-outline badge-error">Error</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-797966342"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Primary')], style: [Badge.outline, Badge.primary]),
+Badge([text('Secondary')], style: [Badge.outline, Badge.secondary]),
+Badge([text('Accent')], style: [Badge.outline, Badge.accent]),
+Badge([text('Info')], style: [Badge.outline, Badge.info]),
+Badge([text('Success')], style: [Badge.outline, Badge.success]),
+Badge([text('Warning')], style: [Badge.outline, Badge.warning]),
+Badge([text('Error')], style: [Badge.outline, Badge.error]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-with-dash-style" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-with-dash-style">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge with dash style</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-311189062"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-dash badge-primary">Primary</span>
+                    <span class="badge badge-dash badge-secondary">Secondary</span>
+                    <span class="badge badge-dash badge-accent">Accent</span>
+                    <span class="badge badge-dash badge-info">Info</span>
+                    <span class="badge badge-dash badge-success">Success</span>
+                    <span class="badge badge-dash badge-warning">Warning</span>
+                    <span class="badge badge-dash badge-error">Error</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-311189062"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('Primary')], style: [Badge.dash, Badge.primary]),
+Badge([text('Secondary')], style: [Badge.dash, Badge.secondary]),
+Badge([text('Accent')], style: [Badge.dash, Badge.accent]),
+Badge([text('Info')], style: [Badge.dash, Badge.info]),
+Badge([text('Success')], style: [Badge.dash, Badge.success]),
+Badge([text('Warning')], style: [Badge.dash, Badge.warning]),
+Badge([text('Error')], style: [Badge.dash, Badge.error]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="neutral-badge-with-outline-or-dash-style" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#neutral-badge-with-outline-or-dash-style">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Neutral badge with outline or dash style</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">These badges use dark text, only use them on light backgrounds</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-729233960"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="bg-white p-6 w-full lg:-my-6 rounded-box flex gap-2 justify-center">
+                    <span class="badge badge-neutral badge-outline">Outline</span>
+                    <span class="badge badge-neutral badge-dash">Dash</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-729233960"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// Ensure these are on a light background
+Badge([text('Outline')], style: [Badge.neutral, Badge.outline]),
+Badge([text('Dash')], style: [Badge.neutral, Badge.dash]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-ghost" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-ghost">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge ghost</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-867425852"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><span class="badge badge-ghost">ghost</span></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-867425852"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([text('ghost')], style: [Badge.ghost]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="empty-badge" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#empty-badge">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Empty badge</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-471799149"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-primary badge-lg"></span>
+                    <span class="badge badge-primary badge-md"></span>
+                    <span class="badge badge-primary badge-sm"></span>
+                    <span class="badge badge-primary badge-xs"></span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-471799149"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge([], style: [Badge.primary, Badge.lg]),
+Badge([], style: [Badge.primary, Badge.md]),
+Badge([], style: [Badge.primary, Badge.sm]),
+Badge([], style: [Badge.primary, Badge.xs]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-with-icon" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-with-icon">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge with icon</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-9927165"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <span class="badge badge-info gap-1"><span class="material-symbols-rounded text-sm">info</span>Info</span>
+                    <span class="badge badge-success gap-1"><span class="material-symbols-rounded text-sm">check_circle</span>Success</span>
+                    <span class="badge badge-warning gap-1"><span class="material-symbols-rounded text-sm">warning</span>Warning</span>
+                    <span class="badge badge-error gap-1"><span class="material-symbols-rounded text-sm">error</span>Error</span>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-9927165"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Badge(
+  [
+    Icon('info', style: [TextUtil.sm]),
+    Text('Info'),
+  ],
+  style: [Badge.info, Layout.gap1],
+),
+Badge(
+  [
+    Icon('check_circle', style: [TextUtil.sm]),
+    Text('Success'),
+  ],
+  style: [Badge.success, Layout.gap1],
+),
+Badge(
+  [
+    Icon('warning', style: [TextUtil.sm]),
+    Text('Warning'),
+  ],
+  style: [Badge.warning, Layout.gap1],
+),
+Badge(
+  [
+    Icon('error', style: [TextUtil.sm]),
+    Text('Error'),
+  ],
+  style: [Badge.error, Layout.gap1],
+),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-in-a-text" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-in-a-text">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge in a text</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-515960782"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid">
+                      <h1 class="text-xl font-semibold ">Heading 1 <span class="badge badge-xl">Badge</span></h1>
+                      <h2 class="text-lg font-semibold block">Heading 2 <span class="badge badge-lg">Badge</span></h2>
+                      <h3 class="text-base font-semibold">Heading 3 <span class="badge badge-md">Badge</span></h3>
+                      <h4 class="text-sm font-semibold">Heading 4 <span class="badge badge-sm">Badge</span></h4>
+                      <h5 class="text-xs font-semibold">Heading 5 <span class="badge badge-xs">Badge</span></h5>
+                      <p class="text-xs">Paragraph <span class="badge badge-xs">Badge</span></p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-515960782"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>h1(classes: 'text-xl font-semibold', [
+  text('Heading 1 '),
+  Badge([text('Badge')], style: [Badge.xl]),
+]),
+h2(classes: 'text-lg font-semibold', [
+  text('Heading 2 '),
+  Badge([text('Badge')], style: [Badge.lg]),
+]),
+h3(classes: 'text-base font-semibold', [
+  text('Heading 3 '),
+  Badge([text('Badge')], style: [Badge.md]),
+]),
+h4(classes: 'text-sm font-semibold', [
+  text('Heading 4 '),
+  Badge([text('Badge')], style: [Badge.sm]),
+]),
+h5(classes: 'text-xs font-semibold', [
+  text('Heading 5 '),
+  Badge([text('Badge')], style: [Badge.xs]),
+]),
+p(classes: 'text-xs', [
+  text('Paragraph '),
+  Badge([text('Badge')], style: [Badge.xs]),
+]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="badge-in-a-button" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#badge-in-a-button">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Badge in a button</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-328265379"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <button class="btn" type="button">Inbox<span class="badge badge-sm">+99</span></button>
+                    <button class="btn" type="button">Inbox<span class="badge badge-sm badge-secondary">+99</span></button>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-328265379"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Button([
+  text('Inbox'),
+  Badge([text('+99')], style: [Badge.sm]),
+]),
+Button([
+  text('Inbox'),
+  Badge([text('+99')], style: [Badge.sm, Badge.secondary]),
+]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>

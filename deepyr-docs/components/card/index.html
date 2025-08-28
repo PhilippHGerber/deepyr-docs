@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="max-w-5xl mx-auto px-4">
+            <div id="card" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-883647213"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <figure><img alt="Shoes" src="images/sneaker.png"/></figure>
+                      <div class="card-body">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-883647213"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    Figure([img(src: 'image.png', alt: 'Shoes')]),
+    CardBody([
+      CardTitle([text('Card Title')]),
+      p([text('A card component has a figure, a body part, and inside body there are title and actions parts')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pricing-card" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#pricing-card">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Pricing Card</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-984971102"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <div class="card-body">
+                        <span class="badge badge-xs badge-warning">Most Popular</span>
+                        <div class="flex justify-between"><h2 class="text-3xl font-bold">Premium</h2><span class="text-xl">$29/mo</span></div>
+                        <ul class="mt-6 flex flex-col gap-2 text-xs">
+                          <li>
+                            <span class="material-symbols-rounded text-success w-4 h-4 me-2 inline-block">check</span>
+                            <span>High-resolution image generation</span>
+                          </li>
+                          <li>
+                            <span class="material-symbols-rounded text-success w-4 h-4 me-2 inline-block">check</span>
+                            <span>Customizable style templates</span>
+                          </li>
+                          <li>
+                            <span class="material-symbols-rounded text-success w-4 h-4 me-2 inline-block">check</span>
+                            <span>Batch processing capabilities</span>
+                          </li>
+                          <li>
+                            <span class="material-symbols-rounded text-success w-4 h-4 me-2 inline-block">check</span>
+                            <span>AI-driven image enhancements</span>
+                          </li>
+                          <li class="opacity-50">
+                            <span class="material-symbols-rounded disabled:text-base-content w-4 h-4 me-2 inline-block">check</span>
+                            <span class="line-through">Seamless cloud integration</span>
+                          </li>
+                          <li class="opacity-50">
+                            <span class="material-symbols-rounded disabled:text-base-content w-4 h-4 me-2 inline-block">check</span>
+                            <span class="line-through">Real-time collaboration tools</span>
+                          </li>
+                        </ul>
+                        <div class="mt-6"><button class="btn btn-primary btn-block" type="button">Subscribe</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-984971102"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    CardBody([
+      Badge([text('Most Popular')], style: [Badge.xs, Badge.warning]),
+      div(classes: 'flex justify-between', [
+        h2(classes: 'text-3xl font-bold', [text('Premium')]),
+        span(classes: 'text-xl', [text('$29/mo')]),
+      ]),
+      ul(
+        classes: 'mt-6 flex flex-col gap-2 text-xs',
+        [
+          li([
+            Icon('check', style: [TextUtil.success, Size.w4, Size.h4, Spacing.me(2), Layout.inlineBlock]),
+            span([text('High-resolution image generation')]),
+          ]),
+          // ... other list items ...
+          li(
+            classes: 'opacity-50',
+            [
+              Icon('check', style: [TextUtil.baseContent.on([Is.disabled]), Size.w4, Size.h4, Spacing.me(2), Layout.inlineBlock]),
+              span(classes: 'line-through', [text('Seamless cloud integration')]),
+            ]
+          ),
+        ]
+      ),
+      div(
+        classes: 'mt-6',
+        [
+          Button([text('Subscribe')], style: [Button.primary, Button.block]),
+        ]
+      ),
+    ]),
+  ],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-sizes" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-sizes">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card sizes</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-788790738"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid gap-6">
+                      <div class="card card-xs w-96 bg-base-100 shadow-sm">
+                        <div class="card-body">
+                          <h2 class="card-title">Xsmall Card</h2>
+                          <p>A card component has a figure, a body part...</p>
+                          <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                        </div>
+                      </div>
+                      <div class="card card-sm w-96 bg-base-100 shadow-sm">
+                        <div class="card-body">
+                          <h2 class="card-title">Small Card</h2>
+                          <p>A card component has a figure, a body part...</p>
+                          <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                        </div>
+                      </div>
+                      <div class="card card-md w-96 bg-base-100 shadow-sm">
+                        <div class="card-body">
+                          <h2 class="card-title">Medium Card</h2>
+                          <p>A card component has a figure, a body part...</p>
+                          <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                        </div>
+                      </div>
+                      <div class="card card-lg w-96 bg-base-100 shadow-sm">
+                        <div class="card-body">
+                          <h2 class="card-title">Large Card</h2>
+                          <p>A card component has a figure, a body part...</p>
+                          <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                        </div>
+                      </div>
+                      <div class="card card-xl w-96 bg-base-100 shadow-sm">
+                        <div class="card-body">
+                          <h2 class="card-title">Xlarge Card</h2>
+                          <p>A card component has a figure, a body part...</p>
+                          <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-788790738"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>div( // Wrapper for grid layout in preview
+  classes: 'grid gap-6',
+  [
+    // Card - xs
+    Card(
+      style: [Card.xs, Size.w96, BgUtil.base100, Effects.shadowSm],
+      [ /* CardBody with content */ ],
+    ),
+    // Card - sm
+    Card(
+      style: [Card.sm, Size.w96, BgUtil.base100, Effects.shadowSm],
+      [ /* CardBody with content */ ],
+    ),
+    // Card - md (default)
+    Card(
+      style: [Card.md, Size.w96, BgUtil.base100, Effects.shadowSm],
+      [ /* CardBody with content */ ],
+    ),
+    // Card - lg
+    Card(
+      style: [Card.lg, Size.w96, BgUtil.base100, Effects.shadowSm],
+      [ /* CardBody with content */ ],
+    ),
+    // Card - xl
+    Card(
+      style: [Card.xl, Size.w96, BgUtil.base100, Effects.shadowSm],
+      [ /* CardBody with content */ ],
+    ),
+  ]
+),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-a-card-border" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-a-card-border">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with a card-border</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-123027237"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card card-border w-96 bg-base-100">
+                      <div class="card-body">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-123027237"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Card.border, Size.w96, BgUtil.base100],
+  [
+    CardBody([
+      CardTitle([text('Card Title')]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-a-dash-border" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-a-dash-border">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with a dash border</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-1014119824"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card card-dash w-96 bg-base-100">
+                      <div class="card-body">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-1014119824"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Card.dash, Size.w96, BgUtil.base100],
+  [
+    CardBody([
+      CardTitle([text('Card Title')]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-badge" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-badge">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with badge</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-1029492026"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <figure><img alt="Shoes" src="images/sneaker.png"/></figure>
+                      <div class="card-body">
+                        <h2 class="card-title">Card Title<span class="badge badge-secondary">NEW</span></h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><span class="badge badge-outline">Fashion</span><span class="badge badge-outline">Products</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-1029492026"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    Figure([img(src: 'image.png', alt: 'Shoes')]),
+    CardBody([
+      CardTitle([
+        text('Card Title'),
+        Badge([text('NEW')], style: [Badge.secondary]),
+      ]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Badge([text('Fashion')], style: [Badge.outline]),
+          Badge([text('Products')], style: [Badge.outline]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-bottom-image" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-bottom-image">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with bottom image</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-677776967"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <div class="card-body"><h2 class="card-title">Card Title</h2><p>A card component has a figure, a body part...</p></div>
+                      <figure><img alt="Shoes" src="images/sneaker.png"/></figure>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-677776967"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    CardBody([
+      CardTitle([text('Card Title')]),
+      p([text('A card component has a figure, a body part...')]),
+    ]),
+    Figure([img(src: 'image.png', alt: 'Shoes')]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-centered-content-and-paddings" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-centered-content-and-paddings">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with centered content and paddings</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-639125356"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <figure class="px-10 pt-10"><img class="rounded-xl" alt="Shoes" src="images/sneaker.png"/></figure>
+                      <div class="card-body items-center text-center">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-639125356"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    Figure(
+      [img(src: 'image.png', alt: 'Shoes', style: [Effects.roundedBox])], // Or Borders.roundedBox
+      style: [Spacing.px(10), Spacing.pt(10)],
+    ),
+    CardBody(
+      [
+        CardTitle([text('Card Title')]),
+        p([text('A card component has a figure, a body part...')]),
+        CardActions([
+          Button([text('Buy Now')], style: [Button.primary]),
+        ]),
+      ],
+      style: [Alignment.itemsCenter, TextUtil.center],
+    ),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-image-overlay" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-image-overlay">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with image overlay</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-240903012"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card image-full w-96 bg-base-100 shadow-sm">
+                      <figure><img alt="Shoes" src="images/sneaker.png"/></figure>
+                      <div class="card-body">
+                        <h2 class="card-title">Card Title</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-240903012"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Card.imageFull, Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    Figure([img(src: 'image.png', alt: 'Shoes')]),
+    CardBody([
+      CardTitle([text('Card Title')]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-no-image" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-no-image">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with no image</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-698005710"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-698005710"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    CardBody([
+      CardTitle([text('Card title!')]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-custom-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-custom-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with custom color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-661031467"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-primary text-primary-content">
+                      <div class="card-body">
+                        <h2 class="card-title">Card title!</h2>
+                        <p>A card component has a figure, a body part...</p>
+                        <div class="card-actions justify-end"><button class="btn" type="button">Buy Now</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-661031467"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.primary, TextUtil.primaryContent],
+  [
+    CardBody([
+      CardTitle([text('Card title!')]),
+      p([text('A card component has a figure, a body part...')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Buy Now')]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="centered-card-with-neutral-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#centered-card-with-neutral-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Centered card with neutral color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-525631564"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-neutral text-neutral-content">
+                      <div class="card-body items-center text-center">
+                        <h2 class="card-title">Cookies!</h2>
+                        <p>We are using cookies for no reason.</p>
+                        <div class="card-actions justify-end">
+                          <button class="btn btn-primary" type="button">Accept</button>
+                          <button class="btn btn-ghost" type="button">Deny</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-525631564"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.neutral, TextUtil.neutralContent],
+  [
+    CardBody(
+      [
+        CardTitle([text('Cookies!')]),
+        p([text('We are using cookies for no reason.')]),
+        CardActions(
+          style: [Alignment.justifyEnd],
+          [
+            Button([text('Accept')], style: [Button.primary]),
+            Button([text('Deny')], style: [Button.ghost]),
+          ],
+        ),
+      ],
+      style: [Alignment.itemsCenter, TextUtil.center],
+    ),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-action-on-top" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-action-on-top">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with action on top</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-102507711"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card w-96 bg-base-100 shadow-sm">
+                      <div class="card-body">
+                        <div class="card-actions justify-end">
+                          <button class="btn btn-square btn-sm" type="button"><span class="material-symbols-rounded text-lg">close</span></button>
+                        </div>
+                        <p>We are using cookies for no reason.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-102507711"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Size.w96, BgUtil.base100, Effects.shadowSm],
+  [
+    CardBody([
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button(
+            [Icon('close', style: [TextUtil.lg])],
+            style: [Button.square, Button.sm],
+          ),
+        ],
+      ),
+      p([text('We are using cookies for no reason.')]),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="card-with-image-on-side" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#card-with-image-on-side">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Card with image on side</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-464726736"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card card-side bg-base-100 shadow-sm">
+                      <figure class="w-48"><img alt="Shoes" src="images/sneaker2.png"/></figure>
+                      <div class="card-body">
+                        <h2 class="card-title">New movie is released!</h2>
+                        <p>Click the button to watch on Jetflix app.</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Watch</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-464726736"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [Card.side, BgUtil.base100, Effects.shadowSm],
+  [
+    Figure([img(src: 'image.webp', alt: 'Movie')]),
+    CardBody([
+      CardTitle([text('New movie is released!')]),
+      p([text('Click the button to watch on Jetflix app.')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Watch')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="responsive-card-vertical-on-small-screen-horizontal-on-large-screen" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#responsive-card-vertical-on-small-screen-horizontal-on-large-screen">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Responsive card (vertical on small screen, horizontal on large screen)</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-859130150"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="card bg-base-100 shadow-sm lg:card-side">
+                      <figure class="max-w-96"><img alt="Album" src="images/album.png"/></figure>
+                      <div class="card-body">
+                        <h2 class="card-title">New album is released!</h2>
+                        <p>Click the button to listen on Spotiwhy app.</p>
+                        <div class="card-actions justify-end"><button class="btn btn-primary" type="button">Listen</button></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-859130150"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Card(
+  style: [
+    BgUtil.base100,
+    Effects.shadowSm,
+    Card.side.at(Breakpoint.lg)
+  ],
+  [
+    Figure([img(src: 'image.webp', alt: 'Album')]),
+    CardBody([
+      CardTitle([text('New album is released!')]),
+      p([text('Click the button to listen on Spotiwhy app.')]),
+      CardActions(
+        style: [Alignment.justifyEnd],
+        [
+          Button([text('Listen')], style: [Button.primary]),
+        ],
+      ),
+    ]),
+  ],
+),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>

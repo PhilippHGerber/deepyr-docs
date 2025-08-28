@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="max-w-5xl mx-auto px-4 space-y-12">
+            <div id="text-input" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#text-input">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Text input</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-550221385"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><input class="input input-bordered" type="text" placeholder="Type here"/></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-550221385"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(
+  placeholder: 'Type here',
+  style: [Input.bordered],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="text-input-with-text-label-inside" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#text-input-with-text-label-inside">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Text input with text label inside</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">
+                Use the Label component as a styled container to add icons and other elements inside the input field.
+              </p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-598114059"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid gap-4 w-xs">
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">search</span><input class="input grow" type="search" placeholder="Search"/><kbd class="kbd kbd-sm">⌘</kbd><kbd class="kbd kbd-sm">K</kbd>
+                      </label>
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">description</span><input class="input grow" type="text" placeholder="index.php"/>
+                      </label>
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="label">Path</span><input class="input grow" type="text" placeholder="src/app/"/><span class="badge badge-neutral badge-xs">Optional</span>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-598114059"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Label(
+  [
+    Icon('search'),
+    Input(type: 'search', placeholder: 'Search', style: [Flex.grow]),
+    Kbd([text('⌘')], style: [Kbd.sm]),
+    Kbd([text('K')], style: [Kbd.sm]),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+Label(
+  [
+    Icon('description'),
+    Input(placeholder: 'index.php', style: [Flex.grow]),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+Label(
+  [
+    FormLabel([text('Path')], tag: 'span'),
+    Input(placeholder: 'src/app/', style: [Flex.grow]),
+    Badge([text('Optional')], style: [Badge.neutral, Badge.xs]),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="ghost-style" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#ghost-style">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Ghost style</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-902730621"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><input class="input input-ghost input-bordered" type="text" placeholder="Type here"/></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-902730621"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(
+  placeholder: 'Type here',
+  style: [Input.ghost, Input.bordered],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="with-fieldset-and-legend" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#with-fieldset-and-legend">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">With fieldset and legend</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-528235910"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <fieldset class="fieldset w-xs">
+                      <legend class="fieldset-legend">What is your name?</legend>
+                      <input class="input input-bordered" type="text" placeholder="Type here"/>
+                      <p class="label">Optional</p>
+                    </fieldset>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-528235910"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Fieldset(
+  [
+    Legend([text('What is your name?')]),
+    Input(placeholder: 'Type here', style: [Input.bordered]),
+    FormLabel([text('Optional')]),
+  ],
+  style: [Size.wxs],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="input-colors" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#input-colors">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Input colors</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-141896903"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid gap-4 w-xs">
+                      <input class="input input-bordered input-neutral" type="text" placeholder="neutral"/>
+                      <input class="input input-bordered input-primary" type="text" placeholder="Primary"/>
+                      <input class="input input-bordered input-secondary" type="text" placeholder="Secondary"/>
+                      <input class="input input-bordered input-accent" type="text" placeholder="Accent"/>
+                      <input class="input input-bordered input-info" type="text" placeholder="Info"/>
+                      <input class="input input-bordered input-success" type="text" placeholder="Success"/>
+                      <input class="input input-bordered input-warning" type="text" placeholder="Warning"/>
+                      <input class="input input-bordered input-error" type="text" placeholder="Error"/>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-141896903"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(placeholder: 'neutral', style: [Input.bordered, Input.neutral]),
+Input(placeholder: 'Primary', style: [Input.bordered, Input.primary]),
+Input(placeholder: 'Secondary', style: [Input.bordered, Input.secondary]),
+Input(placeholder: 'Accent', style: [Input.bordered, Input.accent]),
+Input(placeholder: 'Info', style: [Input.bordered, Input.info]),
+Input(placeholder: 'Success', style: [Input.bordered, Input.success]),
+Input(placeholder: 'Warning', style: [Input.bordered, Input.warning]),
+Input(placeholder: 'Error', style: [Input.bordered, Input.error]),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="sizes" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#sizes">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Sizes</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-280826707"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid gap-4 w-xs">
+                      <input class="input input-bordered input-xs" type="text" placeholder="Xsmall"/>
+                      <input class="input input-bordered input-sm" type="text" placeholder="Small"/>
+                      <input class="input input-bordered input-md" type="text" placeholder="Medium"/>
+                      <input class="input input-bordered input-lg" type="text" placeholder="Large"/>
+                      <input class="input input-bordered input-xl" type="text" placeholder="Xlarge"/>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-280826707"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(placeholder: 'Xsmall', style: [Input.bordered, Input.xs]),
+Input(placeholder: 'Small', style: [Input.bordered, Input.sm]),
+Input(placeholder: 'Medium', style: [Input.bordered, Input.md]),
+Input(placeholder: 'Large', style: [Input.bordered, Input.lg]),
+Input(placeholder: 'Xlarge', style: [Input.bordered, Input.xl]),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="disabled" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#disabled">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Disabled</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-645012244"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><input class="input input-bordered" type="text" placeholder="You can't touch this" disabled/></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-645012244"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(
+  placeholder: "You can't touch this",
+  style: [Input.bordered],
+  disabled: true,
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="text-input-with-data-list-suggestion" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#text-input-with-data-list-suggestion">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Text input with data list suggestion</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-336345141"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="input input-bordered" type="text" placeholder="Which browser do you use" list="browsers"/>
+                    <datalist id="browsers">
+                      <option value="Chrome"></option>
+                      <option value="Firefox"></option>
+                      <option value="Safari"></option>
+                      <option value="Opera"></option>
+                      <option value="Edge"></option>
+                    </datalist>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-336345141"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(
+  placeholder: 'Which browser do you use',
+  style: [Input.bordered],
+  attributes: {'list': 'browsers'},
+),
+Datalist(
+  id: 'browsers',
+  [
+    option([], value: 'Chrome'),
+    option([], value: 'Firefox'),
+    option([], value: 'Safari'),
+    option([], value: 'Opera'),
+    option([], value: 'Edge'),
+  ],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="different-input-types" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#different-input-types">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Different Input Types</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-693948330"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="grid gap-4">
+                      <input class="input input-bordered" type="date"/>
+                      <input class="input input-bordered" type="time"/>
+                      <input class="input input-bordered" type="datetime-local"/>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-693948330"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Input(type: 'date', style: [Input.bordered]),
+Input(type: 'time', style: [Input.bordered]),
+Input(type: 'datetime-local', style: [Input.bordered]),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="username-input-with-icon-and-validator" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#username-input-with-icon-and-validator">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Username input with icon and validator</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-239846685"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="w-full max-w-xs">
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">person</span><input class="input validator" type="text" placeholder="Username" required pattern="[A-Za-z][A-Za-z0-9\-]*" minlength="3" maxlength="30" title="Only letters, numbers or dash"/>
+                      </label>
+                      <p class="validator-hint">Must be 3 to 30 characters<br/>containing only letters, numbers or dash</p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-239846685"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Label(
+  [
+    Icon('person'),
+    Input(
+      placeholder: 'Username',
+      required: true,
+      pattern: r'[A-Za-z][A-Za-z0-9\-]*',
+      minLength: 3,
+      maxLength: 30,
+      title: 'Only letters, numbers or dash',
+    ),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+ValidatorHint([
+  text('Must be 3 to 30 characters'),
+  br(),
+  text('containing only letters, numbers or dash'),
+])</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="email-input-with-icon-validator-and-joined-button" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#email-input-with-icon-validator-and-joined-button">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Email input with icon, validator, and joined button</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">The smart `Join` component automatically styles its `deepyr` children.</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-8226569"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="join">
+                      <div class="join-item">
+                        <label class="input input-bordered flex items-center gap-2">
+                          <span class="material-symbols-rounded">mail</span><input class="input validator" type="email" placeholder="mail@site.com" required/>
+                        </label>
+                        <p class="validator-hint hidden">Enter valid email address</p>
+                      </div>
+                      <button class="btn btn-neutral join-item" type="button">Join</button>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-8226569"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// The `Join` component handles adding the `join-item` class automatically.
+Join([
+  // This Container groups the Label and Hint and becomes a single join-item.
+  Container([
+    Label(
+      [
+        Icon('mail'),
+        Input(
+          type: 'email',
+          placeholder: 'mail@site.com',
+          required: true,
+        ),
+      ],
+      type: LabelContainerType.input,
+      style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+    ),
+    ValidatorHint(
+      [text('Enter valid email address')],
+      style: [Layout.hidden], // Hide hint until invalid
+    ),
+  ]),
+  // This Button becomes the second join-item.
+  Button([text('Join')], style: [Button.neutral]),
+])</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="password-input-with-icon-and-validator" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#password-input-with-icon-and-validator">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Password input with icon and validator</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-1030928208"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="w-full max-w-xs">
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">key</span><input class="input validator" type="password" placeholder="Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" minlength="8" title="Must be more than 8 characters, including number, lowercase letter, uppercase letter"/>
+                      </label>
+                      <p class="validator-hint hidden">
+                        Must be more than 8 characters, including<br/>At least one number<br/>At least one lowercase letter<br/>At least one uppercase letter
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-1030928208"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Label(
+  [
+    Icon('key'),
+    Input(
+      type: 'password',
+      placeholder: 'Password',
+      required: true,
+      minLength: 8,
+      pattern: r'(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}',
+      title: 'Must be more than 8 characters...',
+    ),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+ValidatorHint(
+  [ /* Hint text with &lt;br&gt; */ ],
+  style: [Layout.hidden],
+)</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="telephone-number-input-with-icon-and-validator" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#telephone-number-input-with-icon-and-validator">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Telephone number input with icon and validator</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-178650644"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="w-full max-w-xs">
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">phone_iphone</span><input class="input tabular-nums validator" type="tel" placeholder="Phone" required pattern="[0-9]*" minlength="10" maxlength="10" title="Must be 10 digits"/>
+                      </label>
+                      <p class="validator-hint">Must be 10 digits</p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-178650644"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Label(
+  [
+    Icon('phone_iphone'),
+    Input(
+      type: 'tel',
+      placeholder: 'Phone',
+      required: true,
+      pattern: r'[0-9]*',
+      minLength: 10,
+      maxLength: 10,
+      title: 'Must be 10 digits',
+      // 'tabular-nums' is a specific utility not yet in deepyr,
+      // so 'classes' is the appropriate escape hatch.
+      classes: 'tabular-nums',
+    ),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+ValidatorHint([text('Must be 10 digits')])</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="url-input-with-icon-and-validator" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#url-input-with-icon-and-validator">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">URL input with icon and validator</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-84905946"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="w-full max-w-xs">
+                      <label class="input input-bordered flex items-center gap-2">
+                        <span class="material-symbols-rounded">link</span><input class="input validator" type="url" placeholder="https://" value="https://" required pattern="^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$" title="Must be valid URL"/>
+                      </label>
+                      <p class="validator-hint">Must be valid URL</p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-84905946"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Label(
+  [
+    Icon('link'),
+    Input(
+      type: 'url',
+      placeholder: 'https://',
+      value: 'https://',
+      required: true,
+      pattern: r'^(https?://)?([a-zA-Z0-9]([a-zA-Z0-9\-].*[a-zA-Z0-9])?\.)+[a-zA-Z].*$',
+      title: 'Must be valid URL',
+    ),
+  ],
+  type: LabelContainerType.input,
+  style: [Layout.flex, Alignment.itemsCenter, Layout.gap(2)],
+),
+ValidatorHint([text('Must be valid URL')])</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>

@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="max-w-5xl mx-auto px-4 space-y-12">
+            <div id="radio" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#radio">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Radio</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-660060584"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio" type="radio" name="radio-1" value="1" checked/>
+                    <input class="radio" type="radio" name="radio-1" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-660060584"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Radio(value: 1, groupValue: 1, name: 'radio-1', onSelect: (val) =&gt; setState(() =&gt; _selectedValue = val)),
+Radio(value: 2, groupValue: 1, name: 'radio-1', onSelect: (val) =&gt; setState(() =&gt; _selectedValue = val)),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="radio-sizes" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#radio-sizes">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Radio sizes</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-493458242"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-xs" type="radio" name="radio-2" value="1" checked/>
+                    <input class="radio radio-sm" type="radio" name="radio-2.1" value="1" checked/>
+                    <input class="radio radio-md" type="radio" name="radio-2.2" value="1" checked/>
+                    <input class="radio radio-lg" type="radio" name="radio-2.3" value="1" checked/>
+                    <input class="radio radio-xl" type="radio" name="radio-2.4" value="1" checked/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-493458242"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Radio(value: 1, groupValue: 1, name: 'radio-2', onSelect: null, style: [Radio.xs]),
+Radio(value: 1, groupValue: 1, name: 'radio-2.1', onSelect: null, style: [Radio.sm]),
+Radio(value: 1, groupValue: 1, name: 'radio-2.2', onSelect: null, style: [Radio.md]),
+Radio(value: 1, groupValue: 1, name: 'radio-2.3', onSelect: null, style: [Radio.lg]),
+Radio(value: 1, groupValue: 1, name: 'radio-2.4', onSelect: null, style: [Radio.xl]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="neutral-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#neutral-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Neutral color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-452778121"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-neutral" type="radio" name="radio-3" value="1" checked/>
+                    <input class="radio radio-neutral" type="radio" name="radio-3" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-452778121"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-3', onSelect: (val){}, style: [Radio.neutral]),
+Radio(value: 2, groupValue: 1, name: 'radio-3', onSelect: (val){}, style: [Radio.neutral]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="primary-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#primary-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Primary color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-979945992"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-primary" type="radio" name="radio-4" value="1" checked/>
+                    <input class="radio radio-primary" type="radio" name="radio-4" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-979945992"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-4', onSelect: (val){}, style: [Radio.primary]),
+Radio(value: 2, groupValue: 1, name: 'radio-4', onSelect: (val){}, style: [Radio.primary]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="secondary-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#secondary-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Secondary color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-922806175"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-secondary" type="radio" name="radio-5" value="1" checked/>
+                    <input class="radio radio-secondary" type="radio" name="radio-5" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-922806175"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-5', onSelect: (val){}, style: [Radio.secondary]),
+Radio(value: 2, groupValue: 1, name: 'radio-5', onSelect: (val){}, style: [Radio.secondary]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="accent-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#accent-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Accent color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-410434094"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-accent" type="radio" name="radio-6" value="1" checked/>
+                    <input class="radio radio-accent" type="radio" name="radio-6" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-410434094"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-6', onSelect: (val){}, style: [Radio.accent]),
+Radio(value: 2, groupValue: 1, name: 'radio-6', onSelect: (val){}, style: [Radio.accent]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="success-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#success-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Success color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-582336621"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-success" type="radio" name="radio-7" value="1" checked/>
+                    <input class="radio radio-success" type="radio" name="radio-7" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-582336621"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-7', onSelect: (val){}, style: [Radio.success]),
+Radio(value: 2, groupValue: 1, name: 'radio-7', onSelect: (val){}, style: [Radio.success]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="warning-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#warning-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Warning color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-504434502"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-warning" type="radio" name="radio-8" value="1" checked/>
+                    <input class="radio radio-warning" type="radio" name="radio-8" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-504434502"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-8', onSelect: (val){}, style: [Radio.warning]),
+Radio(value: 2, groupValue: 1, name: 'radio-8', onSelect: (val){}, style: [Radio.warning]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="info-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#info-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Info color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-216795979"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-info" type="radio" name="radio-9" value="1" checked/>
+                    <input class="radio radio-info" type="radio" name="radio-9" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-216795979"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-9', onSelect: (val){}, style: [Radio.info]),
+Radio(value: 2, groupValue: 1, name: 'radio-9', onSelect: (val){}, style: [Radio.info]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="error-color" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#error-color">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Error color</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-299603349"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio radio-error" type="radio" name="radio-10" value="1" checked/>
+                    <input class="radio radio-error" type="radio" name="radio-10" value="2"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-299603349"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This requires a stateful parent to manage the selected value.
+Radio(value: 1, groupValue: 1, name: 'radio-10', onSelect: (val){}, style: [Radio.error]),
+Radio(value: 2, groupValue: 1, name: 'radio-10', onSelect: (val){}, style: [Radio.error]),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="disabled" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#disabled">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Disabled</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-184261679"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio" type="radio" name="radio-11" value="1" checked disabled/>
+                    <input class="radio" type="radio" name="radio-11" value="2" disabled/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-184261679"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Radio(value: 1, groupValue: 1, name: 'radio-11', onSelect: null, disabled: true),
+Radio(value: 2, groupValue: 1, name: 'radio-11', onSelect: null, disabled: true),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="radio-with-custom-colors" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#radio-with-custom-colors">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Radio with custom colors</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-120718506"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="radio bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600" type="radio" name="radio-custom-color" value="red" checked/>
+                    <input class="radio bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600" type="radio" name="radio-custom-color" value="blue"/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-120718506"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Radio&lt;String&gt;(
+  value: 'red',
+  groupValue: _selectedValue,
+  name: 'radio-custom-color',
+  onSelect: (val) =&gt; setState(() =&gt; _selectedValue = val),
+  classes: 'bg-red-100 border-red-300 checked:bg-red-200 checked:text-red-600 checked:border-red-600',
+),
+Radio&lt;String&gt;(
+  value: 'blue',
+  groupValue: _selectedValue,
+  name: 'radio-custom-color',
+  onSelect: (val) =&gt; setState(() =&gt; _selectedValue = val),
+  classes: 'bg-blue-100 border-blue-300 checked:bg-blue-200 checked:text-blue-600 checked:border-blue-600',
+),
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="state-management-controlled-component" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#state-management-controlled-component">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">State Management (Controlled Component)</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">
+                A Radio component is controlled. Its state must be managed by a parent using `groupValue` and `onSelect`. Using a generic type like an enum ensures type safety.
+              </p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-135890976"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <div class="flex flex-col gap-2 min-w-40">
+                      <label class="label cursor-pointer justify-start gap-2">
+                        <input class="radio radio-primary" type="radio" name="flavor-group-main" value="_Flavor.vanilla" checked/><span class="label-text">vanilla</span>
+                      </label>
+                      <label class="label cursor-pointer justify-start gap-2">
+                        <input class="radio radio-primary" type="radio" name="flavor-group-main" value="_Flavor.chocolate"/><span class="label-text">chocolate</span>
+                      </label>
+                      <label class="label cursor-pointer justify-start gap-2">
+                        <input class="radio radio-primary" type="radio" name="flavor-group-main" value="_Flavor.strawberry"/><span class="label-text">strawberry</span>
+                      </label>
+                      <p class="mt-2 text-sm">Selected: vanilla</p>
+                    </div>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-135890976"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// 1. Define a type for your radio group values (enum is great for this).
+enum Flavor { vanilla, chocolate, strawberry }
+
+// 2. Create a stateful parent component to manage the state.
+class MyRadioGroup extends StatefulComponent {
+  @override
+  State&lt;MyRadioGroup&gt; createState() =&gt; _MyRadioGroupState();
+}
+
+class _MyRadioGroupState extends State&lt;MyRadioGroup&gt; {
+  // 3. Hold the currently selected value in the state.
+  Flavor _selectedFlavor = Flavor.vanilla;
+
+  @override
+  Iterable&lt;Component&gt; build(BuildContext context) sync* {
+    // 4. Render a Radio for each option.
+    for (final flavor in Flavor.values) {
+      yield label(classes: 'label cursor-pointer justify-start gap-2', [
+        // 5. Provide the value, groupValue, name, and onSelect callback.
+        Radio&lt;Flavor&gt;(
+          // The unique value this radio button represents.
+          value: flavor,
+          // The currently selected value for the entire group.
+          groupValue: _selectedFlavor,
+          // The name must be the same for all radios in the group.
+          name: 'flavor-group',
+          // The callback updates the parent's state, triggering a rebuild.
+          onSelect: (newValue) {
+            // 6. Update the state when a new value is selected.
+            setState(() =&gt; _selectedFlavor = newValue);
+          },
+          style: [Radio.primary],
+        ),
+        span([text(flavor.name)], classes: 'label-text'),
+      ]);
+    }
+  }
+}
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>

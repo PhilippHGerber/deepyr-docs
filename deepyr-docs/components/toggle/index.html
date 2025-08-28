@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html data-theme="light">
+  <head>
+    <base href="/deepyr-docs/"/>
+    <meta charset="utf-8"/>
+    <style>
+      @import url(https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap);
+      @import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:wght@100..700);
+      html, body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        min-height: 100vh;
+        font-family: 'Lexend', sans-serif;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        margin: unset;
+        font-family: 'Manrope', sans-serif;
+      }
+    </style>
+    <link href="styles.css" rel="stylesheet"/>
+    <link href="favicon.ico" rel="icon" type="image/x-icon"/>
+    <link href="css/prism-material-dark.css" rel="stylesheet"/>
+    <script defer src="js/prism.js"></script>
+    <!--$-->
+    <title>Deepyr Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--/-->
+    <script src="main.clients.dart.js" defer></script>
+    <style>
+      .input > input:focus, .select > select:focus {
+        outline: none;
+      }
+      .component-preview .code-wrapper pre, .component-preview .code-wrapper code {
+        font-family: 'Inconsolata', monospace;
+        font-weight: 400;
+      }
+      .tabs-lift > input.deepyr-dart-code-tab-lifted-override:checked {
+        --tab-bg: var(--color-neutral);
+        --tab-border-color: var(--color-neutral);
+        color: var(--color-neutral-content);
+      }
+      .preview {
+        background-image: repeating-linear-gradient(45deg, var(--color-base-100), var(--color-base-100) 13px, var(--color-base-300) 13px, var(--color-base-300) 14px);
+      }
+    </style>
+  </head>
+  <body>
+    <!--@app data={"base":"/deepyr-docs/"}-->
+    <div class="drawer lg:drawer-open">
+      <input id="main-navigation-drawer" class="drawer-toggle" type="checkbox"/>
+      <div class="drawer-content">
+        <div class="navbar bg-base-100 shadow-sm sticky top-0 z-30" role="navigation">
+          <div class="navbar-start">
+            <label class="btn btn-ghost btn-square lg:hidden" role="button" for="main-navigation-drawer"><span class="material-symbols-rounded">menu</span></label>
+            <a style="font-size: 1.25rem; font-weight: bold; margin-left: 0.5rem; text-decoration: none" href="/">
+              <div class="join flex items-center"><div class="pr-2 join-item"><img width="32" height="32" src="images/logo.png"/></div>Deepyr</div>
+            </a>
+          </div>
+          <div class="navbar-end">
+            <details class="dropdown dropdown-end">
+              <summary class="btn btn-ghost" role="button" aria-label="Select Theme">
+                <span class="material-symbols-rounded">palette</span>
+                <span class="material-symbols-rounded">arrow_drop_down</span>
+              </summary>
+              <ul class="dropdown-content menu w-48 mt-4 z-50 max-h-96 overflow-y-auto" tabindex="0" role="menu">
+                <li role="presentation"><button class="btn active" type="button">Light</button></li>
+                <li role="presentation"><button class="btn" type="button">Dark</button></li>
+              </ul>
+            </details>
+            <a class="btn btn-ghost btn-square" role="button" href="https://pub.dev/packages/deepyr" target="_blank" aria-label="View on pub.dev">
+              <svg style="width: 1.2rem; height: 1.2rem" viewBox="0 0 500 500">
+                <path d="M85.53,85.53v266.45c0,26.39,3.31,32.86,16.45,46.05L203.95,500h207.24v-88.82L85.53,85.53z" fill="#40C4FF"/>
+                <path d="M85.53,351.97c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h296.05L85.53,85.53V351.97z" fill="#29B6F6"/>
+                <path d="M85.53,85.53L6.58,250C3.76,255.98,0,266.38,0,273.03c0,14.36,6.32,29.06,16.45,39.47l85.53,85.53 c-13.14-13.19-16.45-19.67-16.45-46.05V85.53z" fill="#01579B"/>
+                <path d="M105.26,401.32c-13.14-13.19-16.45-19.67-16.45-46.05V88.82l-3.29-3.29v266.45 c0,26.39,3.31,32.86,16.45,46.05l13.16,13.16h0L105.26,401.32z" fill="#55C5F8"/>
+                <path d="M348.68,85.53H85.53l325.66,325.66H500V207.24L394.74,101.97C379.95,87.13,366.82,85.53,348.68,85.53z" fill="#01579B"/>
+                <path d="M394.74,101.97l-85.53-85.53C301.74,8.95,286.18,0,273.03,0c-11.31,0-22.41,2.26-29.6,6.58L85.53,85.53 h263.16C366.82,85.53,379.95,87.13,394.74,101.97z" fill="#40C4FF"/>
+                <polygon points="496.71,203.95 496.71,407.89 407.89,407.89 411.18,411.18 500,411.18 500,207.24" fill="#075087"></polygon>
+                <path d="M394.74,101.97c-16.31-16.31-29.68-16.45-49.34-16.45H85.53l3.29,3.29h256.58 C355.22,88.82,379.99,87.17,394.74,101.97L394.74,101.97z" fill="#3379AE"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <main class="p-4 md:p-6 lg:p-8 bg-base-100">
+          <div class="max-w-5xl mx-auto px-4 space-y-12">
+            <div id="toggle" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#toggle">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Toggle</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">A toggle is a controlled component. Its state must be managed by a parent.</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-590215394"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><input class="toggle" type="checkbox" checked/></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-590215394"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// The toggle component
+Toggle(isChecked: true);
+
+
+// A simple stateful wrapper to manage the toggle's state
+class MyToggle extends StatefulComponent {
+  bool _isChecked = true;
+
+  @override
+  State&lt;MyToggle&gt; createState() =&gt; _MyToggleState();
+}
+
+class _MyToggleState extends State&lt;MyToggle&gt; {
+  @override
+  Iterable&lt;Component&gt; build(BuildContext context) sync* {
+    yield Toggle(
+      isChecked: _isChecked,
+      onToggle: (newValue) {
+        setState(() =&gt; _isChecked = newValue);
+      },
+    );
+  }
+}
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="with-fieldset-and-label" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#with-fieldset-and-label">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">With fieldset and label</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-916358832"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <fieldset class="fieldset w-64 p-4 bg-base-100 border border-base-300 rounded-box">
+                      <legend class="fieldset-legend">Login options</legend>
+                      <label class="label cursor-pointer justify-start"><input class="toggle" type="checkbox" checked/><span class="label-text ml-2">Remember me</span></label>
+                    </fieldset>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-916358832"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>class ToggleWithFieldset extends StatefulComponent {
+  bool _rememberMe = true;
+
+  @override
+  State&lt;ToggleWithFieldset&gt; createState() =&gt; _ToggleWithFieldsetState();
+}
+
+class _ToggleWithFieldsetState extends State&lt;ToggleWithFieldset&gt; {
+  @override
+  Iterable&lt;Component&gt; build(BuildContext context) sync* {
+    yield Fieldset(
+      [
+        Legend([text('Login options')]),
+        // For labels with interactive elements, use Jaspr's primitive `label()`.
+        label(
+          [
+            Toggle(
+              isChecked: _rememberMe,
+              onToggle: (val) =&gt; setState(() =&gt; _rememberMe = val),
+            ),
+            span([text('Remember me')], classes: 'label-text ml-2'),
+          ],
+          classes: 'label cursor-pointer justify-start',
+        ),
+      ],
+      style: [Size.w64],
+      classes: 'p-4 bg-base-100 border border-base-300 rounded-box',
+    );
+  }
+}
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="sizes" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#sizes">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Sizes</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-39401744"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="toggle toggle-xs" type="checkbox" checked/>
+                    <input class="toggle toggle-sm" type="checkbox" checked/>
+                    <input class="toggle toggle-md" type="checkbox" checked/>
+                    <input class="toggle toggle-lg" type="checkbox" checked/>
+                    <input class="toggle toggle-xl" type="checkbox" checked/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-39401744"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Toggle(isChecked: true, style: [Toggle.xs]),
+Toggle(isChecked: true, style: [Toggle.sm]),
+Toggle(isChecked: true, style: [Toggle.md]), // Default
+Toggle(isChecked: true, style: [Toggle.lg]),
+Toggle(isChecked: true, style: [Toggle.xl]),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="colors" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#colors">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Colors</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-157806021"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="toggle toggle-primary" type="checkbox" checked/>
+                    <input class="toggle toggle-secondary" type="checkbox" checked/>
+                    <input class="toggle toggle-accent" type="checkbox" checked/>
+                    <input class="toggle toggle-neutral" type="checkbox" checked/>
+                    <input class="toggle toggle-info" type="checkbox" checked/>
+                    <input class="toggle toggle-success" type="checkbox" checked/>
+                    <input class="toggle toggle-warning" type="checkbox" checked/>
+                    <input class="toggle toggle-error" type="checkbox" checked/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-157806021"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Toggle(isChecked: true, style: [Toggle.primary]),
+Toggle(isChecked: true, style: [Toggle.secondary]),
+Toggle(isChecked: true, style: [Toggle.accent]),
+Toggle(isChecked: true, style: [Toggle.neutral]),
+Toggle(isChecked: true, style: [Toggle.info]),
+Toggle(isChecked: true, style: [Toggle.success]),
+Toggle(isChecked: true, style: [Toggle.warning]),
+Toggle(isChecked: true, style: [Toggle.error]),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="disabled" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#disabled">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Disabled</h4>
+              </div>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-889966911"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="toggle" type="checkbox" disabled/>
+                    <input class="toggle" type="checkbox" checked disabled/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-889966911"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Toggle(disabled: true),
+Toggle(isChecked: true, disabled: true),</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="indeterminate" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#indeterminate">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Indeterminate</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">The indeterminate state can only be set using JavaScript after the element has rendered.</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-204204388"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2"><input id="indeterminate-toggle-example" class="toggle" type="checkbox"/></div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-204204388"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// The `indeterminate` property must be set on the DOM element after it renders.
+// This requires a stateful component and a way to reference the element, like an ID.
+
+class MyIndeterminateToggle extends StatefulComponent {
+  final String _toggleId = 'my-unique-id';
+
+  @override
+  State&lt;MyIndeterminateToggle&gt; createState() =&gt; _MyIndeterminateToggleState();
+}
+
+class _MyIndeterminateToggleState extends State&lt;MyIndeterminateToggle&gt; {
+  @override
+  void initState() {
+    super.initState();
+    if (kIsWeb) {
+      // Set the property after the component has been added to the DOM.
+      Future.delayed(Duration.zero, () {
+        final element = document.getElementById(widget._toggleId) as HTMLInputElement?;
+        if (element != null) {
+          element.indeterminate = true;
+        }
+      });
+    }
+  }
+
+  @override
+  Iterable&lt;Component&gt; build(BuildContext context) sync* {
+    yield Toggle(id: widget._toggleId);
+  }
+}
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="toggle-with-icons-inside" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#toggle-with-icons-inside">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Toggle with icons inside</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">Use a label with the `toggle` class, and place the checkbox and icons inside.</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-795016815"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <label class="toggle text-base-content">
+                      <input type="checkbox"/><svg aria-label="enabled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g stroke-linejoin="round" stroke-linecap="round" stroke-width="4" fill="none" stroke="currentColor"><path d="M20 6 9 17l-5-5"/></g></svg><svg aria-label="disabled" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                    </label>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-795016815"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>// This example requires a stateful component to manage the checked state.
+class IconToggle extends StatefulComponent {
+  @override
+  State&lt;IconToggle&gt; createState() =&gt; _IconToggleState();
+}
+
+class _IconToggleState extends State&lt;IconToggle&gt; {
+  bool _isChecked = false;
+
+  @override
+  Iterable&lt;Component&gt; build(BuildContext context) sync* {
+    yield label(
+      classes: 'toggle text-base-content',
+      [
+        input(
+          type: InputType.checkbox,
+          // Conditionally add the 'checked' attribute
+          attributes: { if (_isChecked) 'checked': '' },
+          events: {
+            'change': (dynamic rawEvent) {
+              // Handle the raw DOM event to get the new state
+              if (kIsWeb) {
+                final event = rawEvent as Event;
+                final target = event.target as HTMLInputElement;
+                setState(() =&gt; _isChecked = target.checked);
+              }
+            }
+          },
+        ),
+        // Your SVG icon components here
+        _checkIcon(),
+        _crossIcon(),
+      ],
+    );
+  }
+}
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="toggle-with-custom-colors" class="component-preview not-prose text-base-content my-6 lg:my-12">
+              <div class="flex items-center gap-2 pb-3 text-sm font-bold">
+                <a class="bg-base-100 hover:bg-primary/10 text-base-content/50 hover:text-base-content border-primary/5 hover:border-primary/10 hover:shadow-base-200 inline-grid size-6 place-content-center rounded-sm border hover:shadow-sm no-underline" href="#toggle-with-custom-colors">
+                  <svg class="size-3" fill="currentColor" width="12" height="12" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M216,148H172V108h44a12,12,0,0,0,0-24H172V40a12,12,0,0,0-24,0V84H108V40a12,12,0,0,0-24,0V84H40a12,12,0,0,0,0,24H84v40H40a12,12,0,0,0,0,24H84v44a12,12,0,0,0,24,0V172h40v44a12,12,0,0,0,24,0V172h44a12,12,0,0,0,0-24Zm-108,0V108h40v40Z"/>
+                  </svg>
+                </a>
+                <h4 class="component-preview-title mt-2 mb-1 text-lg font-semibold">Toggle with custom colors</h4>
+              </div>
+              <p class="text-sm text-base-content/70 mb-4">Use the `classes` property for custom Tailwind utilities.</p>
+              <div class="tabs tabs-lift" role="tablist">
+                <input class="tab [--tab-padding:.75rem]" role="tab" aria-label="Preview" checked type="radio" name="preview-tab-873317446"/>
+                <div class="tab-content bg-base-100 border-base-300 rounded-b-box rounded-tr-box ">
+                  <div class="preview p-6 min-h-32 overflow-x-auto flex flex-wrap justify-center items-center gap-2">
+                    <input class="toggle border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500" type="checkbox" checked/>
+                  </div>
+                </div>
+                <input class="tab [--tab-padding:.75rem] deepyr-dart-code-tab-lifted-override" role="tab" aria-label="Dart" type="radio" name="preview-tab-873317446"/>
+                <div class="tab-content bg-neutral text-neutral-content border-neutral rounded-b-box hidden">
+                  <div class="grid *:[grid-area:1/1]">
+                    <div class="code-wrapper overflow-x-auto p-4">
+                      <pre class="language-dart !m-0 !p-0"><code>Toggle(
+  isChecked: _isChecked,
+  onToggle: (newValue) =&gt; setState(() =&gt; _isChecked = newValue),
+  classes: 'border-indigo-600 bg-indigo-500 checked:bg-orange-400 checked:text-orange-800 checked:border-orange-500',
+);
+</code></pre>
+                    </div>
+                    <div class="tooltip tooltip-left tooltip-accent m-2 self-start justify-self-end" data-tip="Copy">
+                      <button class="btn btn-square btn-sm btn-ghost" type="button" aria-label="Copy to clipboard">
+                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="currentColor">
+                          <path d="M 16 3 C 14.742188 3 13.847656 3.890625 13.40625 5 L 6 5 L 6 28 L 26 28 L 26 5 L 18.59375 5 C 18.152344 3.890625 17.257813 3 16 3 Z M 16 5 C 16.554688 5 17 5.445313 17 6 L 17 7 L 20 7 L 20 9 L 12 9 L 12 7 L 15 7 L 15 6 C 15 5.445313 15.445313 5 16 5 Z M 8 7 L 10 7 L 10 11 L 22 11 L 22 7 L 24 7 L 24 26 L 8 26 Z"/>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+      <div class="drawer-side z-40">
+        <label class="drawer-overlay" aria-label="close sidebar" for="main-navigation-drawer"></label>
+        <ul class="menu w-80 p-4 min-h-full bg-base-200 text-base-content" role="menu" aria-orientation="vertical">
+          <li>
+            <li class="menu-title" role="presentation">Actions</li>
+            <ul><li role="presentation"><a href="/components/button">Button</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Input</li>
+            <ul>
+              <li role="presentation"><a href="/components/checkbox">Checkbox</a></li>
+              <li role="presentation"><a href="/components/input">Input</a></li>
+              <li role="presentation"><a href="/components/radio">Radio</a></li>
+              <li role="presentation"><a href="/components/select">Select</a></li>
+              <li role="presentation"><a href="/components/textarea">Textarea</a></li>
+              <li role="presentation"><a href="/components/toggle">Toggle</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Data Display</li>
+            <ul>
+              <li role="presentation"><a href="/components/badge">Badge</a></li>
+              <li role="presentation"><a href="/components/card">Card</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Layout</li>
+            <ul><li role="presentation"><a href="/components/divider">Divider</a></li></ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Feedback</li>
+            <ul>
+              <li role="presentation"><a href="/components/alert">Alert</a></li>
+              <li role="presentation"><a href="/components/loading">Loading</a></li>
+              <li role="presentation"><a href="/components/progress">Progress</a></li>
+            </ul>
+          </li>
+          <li>
+            <li class="menu-title" role="presentation">Navigation</li>
+            <ul><li role="presentation"><a href="/components/link">Link</a></li></ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--/@app-->
+  </body>
+</html>
